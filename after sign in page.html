@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+  <title>BakerYarn Dashboard</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Faculty+Glyphic&family=Noto+Sans:wght@400;500;600;700&family=WindSong:wght@400;500&display=swap"
+    rel="stylesheet"
+  />
+
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+  />
+
+  <style>
+
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+    }
+
+    body{
+      min-height:100vh;
+      overflow-x:hidden;
+      font-family:"Noto Sans",sans-serif;
+      background:#e7b5bb;
+      position:relative;
+    }
+
+    .swirl1{
+      position:absolute;
+      width:600px;
+      height:600px;
+      border:4px solid rgba(255,255,255,0.28);
+      border-radius:45%;
+      top:-120px;
+      left:-120px;
+      transform:rotate(10deg);
+    }
+
+    .swirl2{
+      position:absolute;
+      width:520px;
+      height:520px;
+      border:4px solid rgba(255,255,255,0.18);
+      border-radius:45%;
+      top:-70px;
+      left:-80px;
+      transform:rotate(10deg);
+    }
+
+    .swirl3{
+      position:absolute;
+      width:700px;
+      height:350px;
+      border:4px solid rgba(255,255,255,0.16);
+      border-radius:50%;
+      bottom:-120px;
+      left:280px;
+      transform:rotate(18deg);
+    }
+
+    .swirl4{
+      position:absolute;
+      width:760px;
+      height:380px;
+      border:4px solid rgba(255,255,255,0.10);
+      border-radius:50%;
+      bottom:-160px;
+      left:240px;
+      transform:rotate(18deg);
+    }
+
+    .user-icons{
+
+      position:absolute;
+
+      top:8px;
+      right:32px;
+
+      display:flex;
+
+      gap:22px;
+
+      z-index:100;
+
+    }
+
+    .user-icons a{
+
+      color:#2f2222;
+
+      font-size:1.9rem;
+
+      transition:0.3s;
+
+      text-decoration:none;
+
+    }
+
+    .bottom-section{
+
+      position:fixed;
+
+      left:40px;
+      bottom:30px;
+
+      display:flex;
+      align-items:center;
+      gap:26px;
+
+      z-index:100;
+
+    }
+
+    .bottom-section a{
+
+      text-decoration:none;
+
+      color:#4d3c3c;
+
+      font-size:1rem;
+
+      font-weight:600;
+
+    }
+
+    .social-icons{
+
+      display:flex;
+      gap:16px;
+
+    }
+
+    .container{
+      position:relative;
+      z-index:2;
+      padding:26px 40px 120px;
+    }
+
+    .top-bar{
+      display:flex;
+      justify-content:space-between;
+      align-items:flex-start;
+      gap:30px;
+    }
+
+    .logo{
+      display:flex;
+      flex-direction:column;
+      line-height:0.82;
+      color:#ff5a62;
+      min-width:260px;
+    }
+
+    .logo-top{
+      font-family:"Faculty Glyphic",serif;
+      font-size:4rem;
+    }
+
+    .logo-bottom{
+      font-family:"WindSong",cursive;
+      font-size:4rem;
+      margin-left:120px;
+      margin-top:-12px;
+    }
+
+    .search-wrapper{
+      flex:1;
+      display:flex;
+      justify-content:center;
+      margin-top:22px;
+    }
+
+    .search-bar{
+
+      width:980px;
+
+      background:#fff6f6;
+
+      border-radius:40px;
+
+      padding:18px 24px;
+
+      display:flex;
+      align-items:center;
+      gap:18px;
+
+      text-decoration:none;
+
+      box-shadow:0 8px 18px rgba(0,0,0,0.08);
+
+    }
+
+    .search-bar i{
+      color:#c27a7d;
+      font-size:2rem;
+    }
+
+    .search-bar input{
+
+      border:none;
+      outline:none;
+      background:transparent;
+
+      width:100%;
+
+      font-size:1rem;
+
+      color:#5f4a4a;
+
+      cursor:pointer;
+
+    }
+
+    .main-content{
+
+      margin-top:60px;
+
+      display:flex;
+
+      justify-content:flex-end;
+
+    }
+
+    .grid{
+
+      display:grid;
+
+      grid-template-columns:repeat(2,1fr);
+
+      gap:36px;
+
+    }
+
+    .card{
+
+      position:relative;
+
+      overflow:hidden;
+
+      border-radius:14px;
+
+      cursor:pointer;
+
+    }
+
+    .card img{
+
+      width:430px;
+      height:250px;
+
+      object-fit:cover;
+
+      display:block;
+
+    }
+
+    .card-label{
+
+      position:absolute;
+
+      left:50%;
+      top:50%;
+
+      transform:translate(-50%,-50%);
+
+      background:rgba(126,72,72,0.36);
+
+      backdrop-filter:blur(8px);
+
+      color:white;
+
+      padding:16px 42px;
+
+      border-radius:18px;
+
+      font-size:1.1rem;
+
+      min-width:230px;
+
+      text-align:center;
+
+    }
+
+  </style>
+
+</head>
+
+<body>
+
+  <div class="swirl1"></div>
+  <div class="swirl2"></div>
+  <div class="swirl3"></div>
+  <div class="swirl4"></div>
+
+  <div class="user-icons">
+
+    <a href="#">
+      <i class="fas fa-heart"></i>
+    </a>
+
+    <a href="#">
+      <i class="fas fa-circle-user"></i>
+    </a>
+
+  </div>
+
+  <div class="bottom-section">
+
+    <a href="#">About Us</a>
+
+    <a href="mailto:bakeryarn@gmail.com">
+      Contact Us
+    </a>
+
+    <div class="social-icons">
+
+      <a href="#"><i class="fab fa-facebook-f"></i></a>
+      <a href="#"><i class="fab fa-instagram"></i></a>
+      <a href="#"><i class="fab fa-telegram-plane"></i></a>
+      <a href="#"><i class="fab fa-whatsapp"></i></a>
+
+    </div>
+
+  </div>
+
+  <div class="container">
+
+    <div class="top-bar">
+
+      <div class="logo">
+
+        <div class="logo-top">
+          BAKER
+        </div>
+
+        <div class="logo-bottom">
+          yarn
+        </div>
+
+      </div>
+
+      <div class="search-wrapper">
+
+        <a
+          href="search page.html"
+          class="search-bar"
+        >
+
+          <i class="fas fa-search"></i>
+
+          <input
+            type="text"
+            placeholder="search for Bakeries"
+            readonly
+          />
+
+        </a>
+
+      </div>
+
+    </div>
+
+    <div class="main-content">
+
+      <div class="grid">
+
+        <div class="card">
+
+          <img
+            src="elements/CAKES.avif"
+            alt="Cakes"
+          >
+
+          <div class="card-label">
+            Cakes
+          </div>
+
+        </div>
+
+        <div class="card">
+
+          <img
+            src="elements/COOKIES.jpg"
+            alt="Cookies"
+          >
+
+          <div class="card-label">
+            Cookies
+          </div>
+
+        </div>
+
+        <div class="card">
+
+          <img
+            src="elements/CUPCAKE.webp"
+            alt="Cupcakes"
+          >
+
+          <div class="card-label">
+            Cupcakes
+          </div>
+
+        </div>
+
+        <div class="card">
+
+          <img
+            src="elements/COOKBOOK.jpg"
+            alt="Cookbooks"
+          >
+
+          <div class="card-label">
+            Cookbooks
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</body>
+</html>

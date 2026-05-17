@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+  <title>BakerYarn – The Ingredient Store</title>
+
+  <!-- GOOGLE FONTS -->
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link href="https://fonts.googleapis.com/css2?family=Faculty+Glyphic&family=WindSong:wght@400;500&family=Noto+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;1,500&display=swap" rel="stylesheet">
+
+  <style>
+
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+    }
+
+    body{
+      background:#fff4f5;
+      display:flex;
+      min-height:100vh;
+      font-family:"Noto Sans",sans-serif;
+      overflow-x:hidden;
+    }
+
+    /* ══════════════════════════════
+       SIDEBAR
+    ══════════════════════════════ */
+
+    .sidebar{
+      width:270px;
+      background:#fffafa;
+      border-right:2px solid #f3d6d8;
+      box-shadow:4px 0 10px rgba(0,0,0,0.03);
+      display:flex;
+      flex-direction:column;
+      position:sticky;
+      top:0;
+      height:100vh;
+      overflow-y:auto;
+      flex-shrink:0;
+    }
+
+    .sidebar-logo{
+      padding:26px 24px 18px;
+      border-bottom:2px solid #f6dfe1;
+      text-decoration:none;
+      line-height:0.9;
+    }
+
+    .logo-baker{
+      display:block;
+      font-family:"Faculty Glyphic",serif;
+      font-size:2rem;
+      color:#ff5757;
+    }
+
+    .logo-yarn{
+      display:block;
+      font-family:"WindSong",cursive;
+      font-size:2.8rem;
+      margin-left:42px;
+      color:#ff5757;
+    }
+
+    .sidebar-heading{
+      padding:18px 28px 10px;
+      font-size:0.9rem;
+      color:#c2858d;
+      letter-spacing:1px;
+      text-transform:uppercase;
+      font-weight:600;
+    }
+
+    .sidebar-item{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding:15px 24px 15px 28px;
+      border-bottom:1px solid #f6e4e5;
+      text-decoration:none;
+      font-size:1.02rem;
+      color:#5f4a4a;
+      margin-right:10px;
+      border-radius:0 20px 20px 0;
+      transition:0.25s;
+      cursor:pointer;
+    }
+
+    .sidebar-item:hover{
+      background:#ffe9ec;
+      transform:translateX(3px);
+    }
+
+    .sidebar-item.active{
+      background:#ffd7dd;
+      color:#d94f62;
+      font-weight:600;
+    }
+
+    .sidebar-dash{
+      width:24px;
+      height:2px;
+      background:#d77984;
+      border-radius:10px;
+    }
+
+    .return-btn{
+      color:#ff5d73;
+      font-weight:700;
+    }
+
+    /* ══════════════════════════════
+       MAIN CONTENT
+    ══════════════════════════════ */
+
+    .main{
+      flex:1;
+      display:flex;
+      flex-direction:column;
+      min-height:100vh;
+    }
+
+    /* HEADER */
+
+    .ingr-header{
+      background:linear-gradient(to right,#ffd9df,#ffeef1);
+      padding:28px 40px 22px;
+    }
+
+    .ingr-page-title{
+      font-family:'Playfair Display',serif;
+      font-style:italic;
+      font-size:2.5rem;
+      color:#7a434b;
+    }
+
+    .ingr-underline{
+      display:block;
+      width:180px;
+      height:4px;
+      background:#ff7a8a;
+      border-radius:10px;
+      margin-top:8px;
+    }
+
+    .mini-text{
+      margin-top:10px;
+      color:#9b6b72;
+      font-style:italic;
+      font-size:0.95rem;
+    }
+
+    /* CATEGORY TITLE */
+
+    .ingr-cat-banner{
+      background:#fffafa;
+      padding:18px 40px;
+      border-bottom:2px solid #f6dfe1;
+    }
+
+    .ingr-cat-title{
+      color:#ff5d73;
+      letter-spacing:4px;
+      font-size:2rem;
+      font-weight:700;
+    }
+
+    /* ══════════════════════════════
+       PRODUCTS GRID
+    ══════════════════════════════ */
+
+    .products-grid{
+      background:#fff4f5;
+      flex:1;
+      padding:28px;
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:20px;
+    }
+
+    .product-card{
+      background:#fffafa;
+      border-radius:24px;
+      padding:24px 18px;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:center;
+      min-height:150px;
+      box-shadow:0 6px 18px rgba(255,105,135,0.08);
+      transition:0.3s;
+      cursor:pointer;
+      border:2px solid #ffe5e8;
+      position:relative;
+      overflow:hidden;
+    }
+
+    .product-card::before{
+      content:"🍓";
+      position:absolute;
+      top:14px;
+      right:16px;
+      font-size:1.2rem;
+      opacity:0.15;
+    }
+
+    .product-card:hover{
+      transform:translateY(-5px) scale(1.02);
+      box-shadow:0 10px 24px rgba(255,105,135,0.16);
+      background:#fffdfd;
+    }
+
+    .mini-icon{
+      width:52px;
+      height:52px;
+      border-radius:18px;
+      background:#ffe8ec;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      margin-bottom:16px;
+      font-size:1.5rem;
+      color:#ff7a8a;
+    }
+
+    .p-label{
+      color:#d85c70;
+      font-size:1rem;
+      font-weight:700;
+      text-align:center;
+    }
+
+    /* ══════════════════════════════
+       RESPONSIVE
+    ══════════════════════════════ */
+
+    @media(max-width:1000px){
+
+      .products-grid{
+        grid-template-columns:repeat(2,1fr);
+      }
+
+    }
+
+    @media(max-width:800px){
+
+      body{
+        flex-direction:column;
+      }
+
+      .sidebar{
+        width:100%;
+        height:auto;
+        position:relative;
+        flex-direction:row;
+        flex-wrap:wrap;
+      }
+
+      .sidebar-logo{
+        width:100%;
+      }
+
+      .sidebar-heading{
+        display:none;
+      }
+
+      .sidebar-item{
+        flex:1;
+        min-width:140px;
+        justify-content:center;
+        border-radius:15px;
+        margin:5px;
+      }
+
+      .sidebar-dash{
+        display:none;
+      }
+
+      .products-grid{
+        grid-template-columns:1fr;
+      }
+
+    }
+
+  </style>
+
+</head>
+
+<body>
+
+  <!-- ══════════════════════════════
+       SIDEBAR
+  ══════════════════════════════ -->
+
+  <aside class="sidebar">
+
+    <a href="../index.html" class="sidebar-logo">
+      <span class="logo-baker">BAKER</span>
+      <span class="logo-yarn">Yarn</span>
+    </a>
+
+    <div class="sidebar-heading">
+      Categories
+    </div>
+
+    <a class="sidebar-item active" href="#" onclick="showCat('Flavourings',this)">
+      Flavourings
+      <span class="sidebar-dash"></span>
+    </a>
+
+    <a class="sidebar-item" href="#" onclick="showCat('Dairy Products',this)">
+      Dairy Products
+      <span class="sidebar-dash"></span>
+    </a>
+
+    <a class="sidebar-item" href="#" onclick="showCat('Utensils',this)">
+      Utensils
+      <span class="sidebar-dash"></span>
+    </a>
+
+    <a class="sidebar-item" href="#" onclick="showCat('Flours',this)">
+      Flours
+      <span class="sidebar-dash"></span>
+    </a>
+
+    <a class="sidebar-item" href="#" onclick="showCat('Grocery',this)">
+      Grocery
+      <span class="sidebar-dash"></span>
+    </a>
+
+    <a class="sidebar-item" href="#" onclick="showCat('Leavens',this)">
+      Leavens
+      <span class="sidebar-dash"></span>
+    </a>
+
+    <a class="sidebar-item" href="#" onclick="showCat('Pre-Made',this)">
+      Pre-Made
+      <span class="sidebar-dash"></span>
+    </a>
+
+    <a class="sidebar-item" href="#" onclick="showCat('Decoration',this)">
+      Decoration
+      <span class="sidebar-dash"></span>
+    </a>
+
+    <a class="sidebar-item" href="#" onclick="showCat('Cookbooks',this)">
+      Cookbooks
+      <span class="sidebar-dash"></span>
+    </a>
+
+    <a class="sidebar-item return-btn" href="search page.html">
+      ← Return
+      <span class="sidebar-dash"></span>
+    </a>
+
+  </aside>
+
+  <!-- ══════════════════════════════
+       MAIN CONTENT
+  ══════════════════════════════ -->
+
+  <main class="main">
+
+    <!-- HEADER -->
+
+    <div class="ingr-header">
+
+      <div class="ingr-page-title">
+        The Ingredient Store
+      </div>
+
+      <span class="ingr-underline"></span>
+
+      <p class="mini-text">
+        Everything sweet begins here ✨
+      </p>
+
+    </div>
+
+    <!-- CATEGORY TITLE -->
+
+    <div class="ingr-cat-banner">
+
+      <div class="ingr-cat-title" id="catTitle">
+        FLAVOURINGS
+      </div>
+
+    </div>
+
+    <!-- PRODUCTS -->
+
+    <div class="products-grid" id="productsGrid"></div>
+
+  </main>
+
+  <!-- ══════════════════════════════
+       SCRIPT
+  ══════════════════════════════ -->
+
+  <script>
+
+    const catalogueData = {
+
+      'Flavourings': [
+        { name:'Vanilla Extract', icon:'🍦' },
+        { name:'Rose Water', icon:'🌸' },
+        { name:'Almond Essence', icon:'🥜' },
+        { name:'Cardamom Powder', icon:'✨' }
+      ],
+
+      'Dairy Products': [
+        { name:'Butter', icon:'🧈' },
+        { name:'Cream Cheese', icon:'🍰' },
+        { name:'Heavy Cream', icon:'🥛' },
+        { name:'Condensed Milk', icon:'☁️' }
+      ],
+
+      'Utensils': [
+        { name:'Stand Mixer', icon:'🧁' },
+        { name:'Piping Bags', icon:'🍥' },
+        { name:'Cake Moulds', icon:'🎂' },
+        { name:'Spatulas', icon:'🍴' }
+      ],
+
+      'Flours': [
+        { name:'All Purpose Flour', icon:'🌾' },
+        { name:'Almond Flour', icon:'🥜' },
+        { name:'Bread Flour', icon:'🍞' },
+        { name:'Whole Wheat', icon:'🌾' }
+      ],
+
+      'Grocery': [
+        { name:'Brown Sugar', icon:'🍪' },
+        { name:'Cocoa Powder', icon:'🍫' },
+        { name:'Dark Chocolate', icon:'🍩' },
+        { name:'Honey', icon:'🍯' }
+      ],
+
+      'Leavens': [
+        { name:'Baking Powder', icon:'🧁' },
+        { name:'Dry Yeast', icon:'🍞' },
+        { name:'Baking Soda', icon:'✨' },
+        { name:'Cream of Tartar', icon:'☁️' }
+      ],
+
+      'Pre-Made': [
+        { name:'Cake Mix', icon:'🎂' },
+        { name:'Brownie Mix', icon:'🍫' },
+        { name:'Cookie Mix', icon:'🍪' },
+        { name:'Pancake Mix', icon:'🥞' }
+      ],
+
+      'Decoration': [
+        { name:'Fondant', icon:'🎀' },
+        { name:'Sprinkles', icon:'✨' },
+        { name:'Edible Glitter', icon:'💖' },
+        { name:'Food Colouring', icon:'🌈' }
+      ],
+
+      'Cookbooks': [
+        { name:'Beginner Baking', icon:'📖' },
+        { name:'Cake Decorating', icon:'🧁' },
+        { name:'Bread & Pastry', icon:'🥐' },
+        { name:'World Desserts', icon:'🍰' }
+      ]
+
+    };
+
+    function showCat(name,el){
+
+      document
+        .querySelectorAll('.sidebar-item')
+        .forEach(i => i.classList.remove('active'));
+
+      el.classList.add('active');
+
+      document.getElementById('catTitle')
+      .textContent = name.toUpperCase();
+
+      const products = catalogueData[name] || [];
+
+      const grid = document.getElementById('productsGrid');
+
+      grid.innerHTML = products.map(p => `
+
+        <div class="product-card">
+
+          <div class="mini-icon">
+            ${p.icon}
+          </div>
+
+          <div class="p-label">
+            ${p.name}
+          </div>
+
+        </div>
+
+      `).join('');
+
+      return false;
+
+    }
+
+    showCat(
+      'Flavourings',
+      document.querySelector('.sidebar-item.active')
+    );
+
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+  <title>BakerYarn.com</title>
+
+  <!-- GOOGLE FONTS -->
+
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Faculty+Glyphic&family=Noto+Sans:wght@400;500;600;700&family=WindSong:wght@400;500&display=swap"
+    rel="stylesheet"
+  />
+
+  <!-- FONT AWESOME -->
+
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+  />
+
+  <style>
+
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+    }
+
+    body{
+      background:#e6b9bf;
+      font-family:"Noto Sans",sans-serif;
+      overflow-x:hidden;
+      min-height:100vh;
+    }
+
+    /* ══════════════════════════════
+       TOP RIGHT SECTION
+    ══════════════════════════════ */
+
+    .top-right{
+      width:100%;
+      display:flex;
+      justify-content:flex-end;
+      align-items:center;
+      gap:22px;
+      padding:24px 60px 0 0;
+    }
+
+    .top-right a{
+      text-decoration:none;
+      color:#8f5d66;
+      font-size:0.95rem;
+      font-weight:600;
+      transition:0.3s;
+    }
+
+    .top-right a:hover{
+      color:#ff5d73;
+    }
+
+    .social-icons{
+      display:flex;
+      gap:16px;
+      margin-left:10px;
+    }
+
+    .social-icons a{
+      font-size:1rem;
+    }
+
+    /* ══════════════════════════════
+       TOP BAR
+    ══════════════════════════════ */
+
+    .top-bar{
+      display:flex;
+      justify-content:space-between;
+      align-items:flex-start;
+      padding:0 60px 20px;
+      gap:40px;
+    }
+
+    .company-name{
+      display:flex;
+      flex-direction:column;
+      line-height:0.9;
+      color:#ff5f66;
+      min-width:220px;
+    }
+
+    .sign-1{
+      font-family:"Faculty Glyphic",serif;
+      font-size:2.2rem;
+    }
+
+    .sign-2{
+      font-family:"WindSong",cursive;
+      font-size:4rem;
+      margin-left:30px;
+      margin-top:-8px;
+    }
+
+    /* SEARCH BAR */
+
+    .search-holder{
+      flex:1;
+      display:flex;
+      justify-content:center;
+      margin-top:16px;
+    }
+
+    .search-tab{
+      width:1000px;
+      max-width:100%;
+      background:#f9f0f1;
+      border:none;
+      border-radius:40px;
+      padding:18px 28px;
+      font-size:1rem;
+      color:#704f55;
+      display:flex;
+      align-items:center;
+      box-shadow:0 6px 16px rgba(0,0,0,0.08);
+      cursor:pointer;
+      transition:0.3s;
+    }
+
+    .search-tab:hover{
+      transform:scale(1.01);
+    }
+
+    .search-tab i{
+      color:#ff5d73;
+      margin-right:14px;
+      font-size:1rem;
+    }
+
+    /* ══════════════════════════════
+       MAIN LAYOUT
+    ══════════════════════════════ */
+
+    .main-layout{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      padding:20px 70px 50px;
+      gap:40px;
+    }
+
+    /* LEFT SIDE */
+
+    .left-side{
+      flex:1;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      min-width:380px;
+    }
+
+    .bunny-holder{
+      position:relative;
+      margin-left:90px;
+    }
+
+    .bunny-img{
+      width:320px;
+      filter:drop-shadow(0 10px 20px rgba(0,0,0,0.14));
+    }
+
+    /* LOGIN BUTTON */
+
+    .login-button{
+      position:absolute;
+      top:72%;
+      left:58%;
+      transform:translate(-50%,-50%);
+      background:#ff5d73;
+      color:white;
+      border:none;
+      padding:18px 44px;
+      border-radius:35px;
+      font-size:1.1rem;
+      font-weight:700;
+      cursor:pointer;
+      box-shadow:0 6px 16px rgba(0,0,0,0.16);
+      transition:0.3s;
+      white-space:nowrap;
+    }
+
+    .login-button:hover{
+      background:#ff4865;
+      transform:translate(-50%,-50%) translateY(-3px);
+    }
+
+    /* ══════════════════════════════
+       GRID
+    ══════════════════════════════ */
+
+    .overlay{
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:32px;
+    }
+
+    .category-card{
+      position:relative;
+      border-radius:26px;
+      overflow:hidden;
+      cursor:pointer;
+      transition:0.3s;
+      box-shadow:0 10px 22px rgba(0,0,0,0.12);
+    }
+
+    .category-card:hover{
+      transform:translateY(-6px) scale(1.02);
+    }
+
+    .category-card img{
+      width:390px;
+      height:280px;
+      object-fit:cover;
+      display:block;
+    }
+
+    /* TEXT OVERLAY */
+
+    .text-overlay{
+      position:absolute;
+      top:50%;
+      left:50%;
+      transform:translate(-50%,-50%);
+      background:rgba(128,58,54,0.28);
+      backdrop-filter:blur(6px);
+      color:white;
+      padding:16px 34px;
+      border-radius:18px;
+      font-size:1.6rem;
+      font-weight:700;
+    }
+
+    /* ══════════════════════════════
+       POPUP
+    ══════════════════════════════ */
+
+    .overlay-bg{
+      position:fixed;
+      inset:0;
+      background:rgba(0,0,0,0.18);
+      display:none;
+      z-index:998;
+    }
+
+    .popup{
+      position:fixed;
+      top:50%;
+      left:50%;
+      transform:translate(-50%,-50%);
+      width:62%;
+      min-height:520px;
+
+      /* VERY TRANSPARENT */
+      background:rgba(255,243,245,0.58);
+
+      backdrop-filter:blur(18px);
+
+      border-radius:12px;
+
+      padding:48px 54px;
+
+      display:none;
+
+      z-index:999;
+
+      box-shadow:0 16px 36px rgba(0,0,0,0.12);
+
+      animation:popupShow 0.3s ease;
+
+      border:1px solid rgba(255,255,255,0.25);
+    }
+
+    @keyframes popupShow{
+
+      from{
+        opacity:0;
+        transform:translate(-50%,-46%);
+      }
+
+      to{
+        opacity:1;
+        transform:translate(-50%,-50%);
+      }
+
+    }
+
+    .popup p{
+      color:#6e5a5f;
+      font-size:1.18rem;
+      line-height:2.2;
+      font-weight:500;
+      max-width:88%;
+    }
+
+    .close-btn{
+      margin-top:40px;
+      background:#ff5d73;
+      color:white;
+      border:none;
+      padding:14px 36px;
+      border-radius:10px;
+      font-size:1rem;
+      font-weight:700;
+      cursor:pointer;
+      transition:0.3s;
+    }
+
+    .close-btn:hover{
+      background:#ff4865;
+    }
+
+    /* ══════════════════════════════
+       RESPONSIVE
+    ══════════════════════════════ */
+
+    @media(max-width:1200px){
+
+      .main-layout{
+        flex-direction:column;
+      }
+
+      .overlay{
+        grid-template-columns:1fr;
+      }
+
+      .category-card img{
+        width:100%;
+        max-width:450px;
+      }
+
+      .popup{
+        width:90%;
+      }
+
+    }
+
+    @media(max-width:700px){
+
+      .top-right{
+        justify-content:center;
+        padding:20px;
+        flex-wrap:wrap;
+      }
+
+      .top-bar{
+        flex-direction:column;
+        padding:0 20px 20px;
+      }
+
+      .search-holder{
+        width:100%;
+      }
+
+      .main-layout{
+        padding:20px;
+      }
+
+      .left-side{
+        min-width:auto;
+      }
+
+      .bunny-holder{
+        margin-left:0;
+      }
+
+    }
+
+  </style>
+
+</head>
+
+<body>
+
+  <!-- ══════════════════════════════
+       TOP RIGHT
+  ══════════════════════════════ -->
+
+  <div class="top-right">
+
+    <a href="#">
+      About Us
+    </a>
+
+    <!-- DIRECT EMAIL -->
+
+   <a href="mailto:bakeryarn@gmail.com">
+      Contact Us
+    </a>
+
+    <!-- SOCIALS -->
+
+    <div class="social-icons">
+
+      <a href="#">
+        <i class="fab fa-instagram"></i>
+      </a>
+
+      <a href="#">
+        <i class="fab fa-facebook-f"></i>
+      </a>
+
+      <a href="#">
+        <i class="fab fa-telegram-plane"></i>
+      </a>
+
+      <a href="#">
+        <i class="fab fa-whatsapp"></i>
+      </a>
+
+    </div>
+
+  </div>
+
+  <!-- ══════════════════════════════
+       TOP BAR
+  ══════════════════════════════ -->
+
+  <div class="top-bar">
+
+    <!-- LOGO -->
+
+    <div class="company-name">
+
+      <p class="sign-1">
+        BAKER
+      </p>
+
+      <p class="sign-2">
+        Yarn
+      </p>
+
+    </div>
+
+    <!-- SEARCH -->
+
+    <div class="search-holder">
+
+      <button class="search-tab">
+
+        <i class="fas fa-search"></i>
+
+        Search for bakeries, cupcakes, cookies, ingredients and more...
+
+      </button>
+
+    </div>
+
+  </div>
+
+  <!-- ══════════════════════════════
+       MAIN CONTENT
+  ══════════════════════════════ -->
+
+  <div class="main-layout">
+
+    <!-- LEFT -->
+
+    <div class="left-side">
+
+      <div class="bunny-holder">
+
+        <img
+          src="elements/bunny.png"
+          alt="Bunny"
+          class="bunny-img"
+        />
+
+        <button
+          class="login-button"
+          onclick="openLoginPage()"
+        >
+          Log In
+        </button>
+
+      </div>
+
+    </div>
+
+    <!-- RIGHT GRID -->
+
+    <div class="overlay">
+
+      <!-- CAKES -->
+
+      <div
+        class="category-card"
+        onclick="showPopup(
+        'The history of cakes stretches back thousands of years to ancient civilizations where early forms of cakes were more like sweetened breads made with honey and nuts. Ancient Egyptians are often credited with beginning the art of baking while later Romans and Greeks experimented with richer recipes and decorative styles. Over centuries cakes slowly evolved from dense celebratory breads into the soft layered desserts people know today. During the Victorian era elaborate cake decorations became symbols of wealth and celebration, and birthday cakes with candles became increasingly popular across Europe. Today cakes are deeply connected with celebrations, memories and traditions around the world. Weddings, birthdays, anniversaries and festivals all somehow feel incomplete without a beautifully crafted cake at the center of the table.'
+        )"
+      >
+
+        <img
+          src="elements/CAKES.avif"
+          alt="Cakes"
+        />
+
+        <div class="text-overlay">
+          Cakes
+        </div>
+
+      </div>
+
+      <!-- COOKIES -->
+
+      <div
+        class="category-card"
+        onclick="showPopup(
+        'Cookies were originally created as small test portions of cake batter used by bakers to check oven temperature before baking larger desserts. Over time these tiny baked treats became loved on their own because they were easy to store, easy to share and incredibly versatile. Different regions across the world slowly developed their own styles of cookies using local ingredients, spices and techniques. From butter cookies in Europe to chocolate chip cookies in America, cookies eventually became one of the most widely loved comfort foods. Modern bakeries continue to reinvent cookies with endless combinations of fillings, textures and flavours, making them both nostalgic and constantly evolving at the same time.'
+        )"
+      >
+
+        <img
+          src="elements/COOKIES.jpg"
+          alt="Cookies"
+        />
+
+        <div class="text-overlay">
+          Cookies
+        </div>
+
+      </div>
+
+      <!-- CUPCAKES -->
+
+      <div
+        class="category-card"
+        onclick="showPopup(
+        'Cupcakes became popular during the nineteenth century as bakers searched for quicker and more convenient ways to prepare cakes. Instead of baking one large cake, batter was poured into small cups or moulds which baked much faster and were easier to serve individually. Over time cupcakes became famous not only for their practicality but also for their appearance. Bakeries began experimenting with colourful frostings, decorative toppings and creative flavour combinations. Their small size made them perfect for parties, cafés and celebrations while also allowing people to enjoy desserts without needing to cut slices. Today cupcakes remain one of the most recognizable bakery treats because of their balance between simplicity, creativity and presentation.'
+        )"
+      >
+
+        <img
+          src="elements/CUPCAKE.webp"
+          alt="Cupcakes"
+        />
+
+        <div class="text-overlay">
+          Cupcakes
+        </div>
+
+      </div>
+
+      <!-- COOKBOOKS -->
+
+      <div
+        class="category-card"
+        onclick="showPopup(
+        'Cookbooks have played an important role in preserving culinary traditions for centuries. Before digital recipes existed, families and professional bakers carefully handwritten recipes into notebooks that were passed through generations. Many early baking recipes were guarded closely and shared only within families or communities. As printing became more common, cookbooks allowed baking knowledge to spread across countries and cultures, introducing people to entirely new desserts and techniques. Modern cookbooks now combine traditional recipes with artistic presentation, photography and detailed instructions that inspire both beginner and professional bakers. They continue to serve not only as recipe collections but also as records of culture, creativity and personal memory.'
+        )"
+      >
+
+        <img
+          src="elements/COOKBOOK.jpg"
+          alt="Cookbooks"
+        />
+
+        <div class="text-overlay">
+          Cookbooks
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- ══════════════════════════════
+       POPUP
+  ══════════════════════════════ -->
+
+  <div
+    class="overlay-bg"
+    id="overlayBg"
+    onclick="closePopup()"
+  ></div>
+
+  <div class="popup" id="popupBox">
+
+    <p id="popupText"></p>
+
+    <button
+      class="close-btn"
+      onclick="closePopup()"
+    >
+      Close
+    </button>
+
+  </div>
+
+  <!-- ══════════════════════════════
+       JAVASCRIPT
+  ══════════════════════════════ -->
+
+  <script>
+
+    function showPopup(text){
+
+      document.getElementById("popupText").innerText = text;
+
+      document.getElementById("popupBox").style.display = "block";
+
+      document.getElementById("overlayBg").style.display = "block";
+
+    }
+
+    function closePopup(){
+
+      document.getElementById("popupBox").style.display = "none";
+
+      document.getElementById("overlayBg").style.display = "none";
+
+    }
+
+    function openLoginPage(){
+
+      window.location.href = "login.html";
+
+    }
+
+  </script>
+
+</body>
+</html>

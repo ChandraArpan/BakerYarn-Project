@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+  <title>BakerYarn Suggestions</title>
+
+  <!-- GOOGLE FONT -->
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  >
+
+  <!-- FONT AWESOME -->
+
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+  />
+
+  <style>
+
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+    }
+
+    body{
+
+      background:#efbcc1;
+
+      font-family:"Noto Sans",sans-serif;
+
+      min-height:100vh;
+
+      padding:22px;
+
+      overflow-y:auto;
+
+    }
+
+    /* TOP ICONS */
+
+    .top-icons{
+
+      display:flex;
+
+      justify-content:space-between;
+
+      align-items:center;
+
+      margin-bottom:16px;
+
+    }
+
+    .left-icon i{
+
+      font-size:2rem;
+
+      color:black;
+
+    }
+
+    .right-icons{
+
+      display:flex;
+
+      gap:22px;
+
+    }
+
+    .right-icons i{
+
+      font-size:2rem;
+
+      cursor:pointer;
+
+    }
+
+    .heart{
+      color:#ff3f5c;
+    }
+
+    /* SEARCH BAR */
+
+    .search-bar{
+
+      width:100%;
+
+      background:#f7d7da;
+
+      border-radius:28px;
+
+      padding:14px 20px;
+
+      display:flex;
+
+      align-items:center;
+
+      gap:14px;
+
+      margin-bottom:26px;
+
+    }
+
+    .search-bar i{
+
+      color:#b97a80;
+
+      font-size:1.9rem;
+
+    }
+
+    .search-bar input{
+
+      width:100%;
+
+      border:none;
+
+      outline:none;
+
+      background:transparent;
+
+      font-size:1rem;
+
+      color:#4d3a3a;
+
+      font-style:italic;
+
+    }
+
+    .search-actions{
+
+      display:flex;
+
+      gap:14px;
+
+      color:black;
+
+      font-size:1.3rem;
+
+    }
+
+    /* FILTERS */
+
+    .filter-section{
+
+      display:flex;
+
+      gap:16px;
+
+      margin-bottom:26px;
+
+    }
+
+    .filter-btn{
+
+      background:#fff5f5;
+
+      border:none;
+
+      padding:12px 24px;
+
+      border-radius:18px;
+
+      font-size:1rem;
+
+      font-weight:700;
+
+      cursor:pointer;
+
+    }
+
+    /* BAKERY CARDS */
+
+    .bakery-container{
+
+      display:flex;
+
+      flex-direction:column;
+
+      gap:22px;
+
+      padding-bottom:120px;
+
+    }
+
+    .bakery-card{
+
+      background:#c97d84;
+
+      border-radius:18px;
+
+      padding:18px;
+
+      display:flex;
+
+      justify-content:space-between;
+
+      align-items:center;
+
+      position:relative;
+
+      transition:0.3s;
+
+      min-height:190px;
+
+    }
+
+    .bakery-card:hover{
+
+      transform:translateY(-3px);
+
+    }
+
+    .bakery-left{
+
+      display:flex;
+
+      flex-direction:column;
+
+      justify-content:center;
+
+      gap:10px;
+
+      width:68%;
+
+    }
+
+    .veg-tag{
+
+      color:#00b91f;
+
+      font-weight:700;
+
+      font-style:italic;
+
+      font-size:1rem;
+
+    }
+
+    .bakery-name{
+
+      font-size:2rem;
+
+      font-weight:800;
+
+      color:black;
+
+      text-align:center;
+
+    }
+
+    .time{
+
+      text-align:center;
+
+      font-weight:700;
+
+      margin-top:-4px;
+
+      font-size:1.2rem;
+
+    }
+
+    .location{
+
+      text-align:center;
+
+      font-style:italic;
+
+      color:#2f2222;
+
+      font-size:1rem;
+
+    }
+
+    .rating{
+
+      display:flex;
+
+      align-items:center;
+
+      gap:8px;
+
+      font-weight:700;
+
+      color:black;
+
+      margin-top:14px;
+
+      font-size:1.3rem;
+
+    }
+
+    .rating i{
+      color:black;
+    }
+
+    /* IMAGE SECTION */
+
+    .bakery-image{
+
+      position:relative;
+
+      width:250px;
+
+      display:flex;
+
+      justify-content:flex-end;
+
+      align-items:center;
+
+    }
+
+    .bakery-image img{
+
+      width:220px;
+
+      height:140px;
+
+      object-fit:cover;
+
+      border-radius:16px;
+
+      display:block;
+
+    }
+
+    .small-heart{
+
+      position:absolute;
+
+      top:10px;
+      right:10px;
+
+      color:white;
+
+      font-size:1.7rem;
+
+    }
+
+    /* BACK BUTTON */
+
+    .back-button{
+
+      position:fixed;
+
+      bottom:24px;
+      left:24px;
+
+      z-index:1000;
+
+    }
+
+    .back-button a{
+
+      text-decoration:none;
+
+      background:rgba(255,255,255,0.35);
+
+      backdrop-filter:blur(8px);
+
+      color:#5b4343;
+
+      padding:12px 20px;
+
+      border-radius:18px;
+
+      font-weight:700;
+
+      font-size:1rem;
+
+      display:flex;
+
+      align-items:center;
+
+      gap:10px;
+
+      box-shadow:0 4px 12px rgba(0,0,0,0.12);
+
+    }
+
+    /* RESPONSIVE */
+
+    @media(max-width:768px){
+
+      .bakery-card{
+
+        flex-direction:column;
+
+        gap:22px;
+
+        align-items:flex-start;
+
+      }
+
+      .bakery-left{
+        width:100%;
+      }
+
+      .bakery-image{
+
+        width:100%;
+
+        justify-content:center;
+
+      }
+
+      .bakery-image img{
+
+        width:100%;
+
+        height:220px;
+
+      }
+
+      .bakery-name{
+
+        font-size:1.6rem;
+
+      }
+
+    }
+
+  </style>
+
+</head>
+
+<body>
+
+  <!-- TOP -->
+
+  <div class="top-icons">
+
+    <div class="left-icon">
+
+      <i class="fas fa-location-dot"></i>
+
+    </div>
+
+    <div class="right-icons">
+
+      <i class="fas fa-heart heart"></i>
+
+      <i class="fas fa-circle-user"></i>
+
+    </div>
+
+  </div>
+
+  <!-- SEARCH BAR -->
+
+  <div class="search-bar">
+
+    <i class="fas fa-search"></i>
+
+    <input
+      type="text"
+      placeholder="ABC Bakery"
+    >
+
+    <div class="search-actions">
+
+      <i class="fas fa-microphone"></i>
+
+      <i class="fas fa-camera"></i>
+
+      <i class="fas fa-xmark"></i>
+
+    </div>
+
+  </div>
+
+  <!-- FILTERS -->
+
+  <div class="filter-section">
+
+    <button class="filter-btn">
+      Filter <i class="fas fa-sliders"></i>
+    </button>
+
+    <button class="filter-btn">
+      Sort By <i class="fas fa-chevron-down"></i>
+    </button>
+
+  </div>
+
+  <!-- BAKERY LIST -->
+
+  <div class="bakery-container">
+
+    <!-- CARD 1 -->
+
+    <div class="bakery-card">
+
+      <div class="bakery-left">
+
+        <div class="veg-tag">
+          🟩 Pure Veg
+        </div>
+
+        <div class="bakery-name">
+          WARM OVEN BAKERY
+        </div>
+
+        <div class="time">
+          30-40 Mins
+        </div>
+
+        <div class="location">
+          Lake Town, BLD Crown more, Kolkata
+        </div>
+
+        <div class="rating">
+
+          <i class="fas fa-star"></i>
+
+          4.5 (900)
+
+        </div>
+
+      </div>
+
+      <div class="bakery-image">
+
+        <img
+          src="elements/CAKES.avif"
+          alt="Cake"
+        >
+
+        <i class="fas fa-heart small-heart"></i>
+
+      </div>
+
+    </div>
+
+    <!-- CARD 2 -->
+
+    <div class="bakery-card">
+
+      <div class="bakery-left">
+
+        <div class="bakery-name">
+          COOK OH BAKERY
+        </div>
+
+        <div class="time">
+          20-25 Mins
+        </div>
+
+        <div class="location">
+          Lake Town, BLD Crown more, Kolkata
+        </div>
+
+        <div class="rating">
+
+          <i class="fas fa-star"></i>
+
+          4.5 (2K)
+
+        </div>
+
+      </div>
+
+      <div class="bakery-image">
+
+        <img
+          src="elements/CUPCAKE.webp"
+          alt="Cake"
+        >
+
+        <i
+          class="fas fa-heart small-heart"
+          style="color:#ff3f5c;"
+        ></i>
+
+      </div>
+
+    </div>
+
+    <!-- CARD 3 -->
+
+    <div class="bakery-card">
+
+      <div class="bakery-left">
+
+        <div class="veg-tag">
+          🟩 Pure Veg
+        </div>
+
+        <div class="bakery-name">
+          TROY'S BAKERY
+        </div>
+
+        <div class="time">
+          40-50 Mins
+        </div>
+
+        <div class="location">
+          Lake Town, BLD Crown more, Kolkata
+        </div>
+
+        <div class="rating">
+
+          <i class="fas fa-star"></i>
+
+          4.5 (20)
+
+        </div>
+
+      </div>
+
+      <div class="bakery-image">
+
+        <img
+          src="elements/COOKIES.jpg"
+          alt="Cookies"
+        >
+
+        <i class="fas fa-heart small-heart"></i>
+
+      </div>
+
+    </div>
+
+    <!-- CARD 4 -->
+
+    <div class="bakery-card">
+
+      <div class="bakery-left">
+
+        <div class="bakery-name">
+          CUPPIES BAKERY
+        </div>
+
+        <div class="time">
+          55-60 Mins
+        </div>
+
+        <div class="location">
+          Lake Town, BLD Crown more, Kolkata
+        </div>
+
+        <div class="rating">
+
+          <i class="fas fa-star"></i>
+
+          4.5 (110)
+
+        </div>
+
+      </div>
+
+      <div class="bakery-image">
+
+        <img
+          src="elements/pastries.jpg"
+          alt="Pastries"
+        >
+
+        <i class="fas fa-heart small-heart"></i>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- BACK BUTTON -->
+
+  <div class="back-button">
+
+    <a href="search page.html">
+
+      <i class="fas fa-arrow-left"></i>
+
+      Back
+
+    </a>
+
+  </div>
+
+</body>
+</html>

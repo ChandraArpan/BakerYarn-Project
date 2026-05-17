@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+  <title>BakerYarn Search</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600;700&display=swap"
+    rel="stylesheet"
+  />
+
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+  />
+
+  <style>
+
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+    }
+
+    body{
+
+      min-height:100vh;
+
+      overflow-y:auto;
+
+      font-family:"Noto Sans",sans-serif;
+
+      background:#e7b5bb;
+
+      padding:24px;
+
+    }
+
+    .overlay-top{
+
+      position:relative;
+
+      display:flex;
+
+      justify-content:space-between;
+
+      align-items:center;
+
+      margin-bottom:18px;
+
+    }
+
+    .location-icon{
+
+      font-size:2rem;
+
+      color:black;
+
+    }
+
+    .overlay-icons{
+
+      position:absolute;
+
+      top:8px;
+      right:32px;
+
+      display:flex;
+
+      gap:22px;
+
+      font-size:1.9rem;
+
+    }
+
+    .overlay-icons i:first-child{
+      color:#ff3f57;
+    }
+
+    .big-search{
+
+      width:100%;
+
+      background:#f6d7d9;
+
+      border-radius:40px;
+
+      padding:18px 22px;
+
+      display:flex;
+      align-items:center;
+      gap:18px;
+
+    }
+
+    .big-search i{
+
+      color:#bb7d80;
+
+      font-size:2rem;
+
+    }
+
+    .big-search input{
+
+      width:100%;
+
+      border:none;
+      outline:none;
+      background:transparent;
+
+      font-size:1.1rem;
+
+      font-style:italic;
+
+      color:#4e3c3c;
+
+    }
+
+    .close-search{
+
+      font-size:2rem;
+
+      color:#c8878b;
+
+    }
+
+    /* HOME BUTTON */
+
+    .home-back{
+
+      position:fixed;
+
+      left:28px;
+      bottom:28px;
+
+      z-index:1000;
+
+    }
+
+    .home-back a{
+
+      text-decoration:none;
+
+      color:#7c5555;
+
+      font-size:1rem;
+
+      font-weight:700;
+
+      display:flex;
+
+      align-items:center;
+
+      gap:10px;
+
+      background:rgba(255,255,255,0.28);
+
+      padding:12px 18px;
+
+      border-radius:16px;
+
+      backdrop-filter:blur(6px);
+
+    }
+
+    .mind-title{
+
+      text-align:center;
+
+      margin-top:34px;
+      margin-bottom:30px;
+
+      color:#aa7276;
+
+      font-size:3.5rem;
+
+      font-style:italic;
+
+      font-weight:700;
+
+    }
+
+    .category-grid{
+
+      display:grid;
+
+      grid-template-columns:repeat(2,1fr);
+
+      gap:38px;
+
+      max-width:1200px;
+
+      margin:auto;
+
+      padding-bottom:120px;
+    
+
+    }
+
+    .food-card{
+
+      position:relative;
+
+      overflow:hidden;
+
+      border-radius:28px;
+
+      cursor:pointer;
+
+      box-shadow:0 12px 20px rgba(0,0,0,0.5);
+
+      text-decoration:none;
+
+      transition:0.3s;
+      
+
+    }
+
+    .food-card:hover{
+
+      transform:translateY(-4px);
+
+    }
+
+    .food-card img{
+
+      width:100%;
+
+      height:260px;
+
+      object-fit:cover;
+
+      filter:brightness(0.78);
+
+      display:block;
+      opacity: 0.4;
+
+    }
+
+    .food-card.large{
+      grid-column:1/3;
+    }
+
+    .food-card.large img{
+      height:270px;
+    }
+
+    .food-name{
+
+      position:absolute;
+
+      inset:0;
+
+      display:flex;
+
+      justify-content:center;
+      align-items:center;
+
+      color:#572f26;
+
+      font-size:2rem;
+
+      font-weight:700;
+
+    }
+
+  </style>
+
+</head>
+
+<body>
+
+  <div class="overlay-top">
+
+    <div class="location-icon">
+      <i class="fas fa-location-dot"></i>
+    </div>
+
+    <div class="overlay-icons">
+
+      <i class="fas fa-heart"></i>
+
+      <i class="fas fa-circle-user"></i>
+
+    </div>
+
+  </div>
+
+  <div class="big-search">
+
+    <i class="fas fa-search"></i>
+
+    <input
+      type="text"
+      placeholder="Bakeries near you"
+    />
+
+    <div class="close-search">
+
+      <i class="fas fa-xmark"></i>
+
+    </div>
+
+  </div>
+
+  <!-- HOME BUTTON -->
+
+  <div class="home-back">
+
+    <a href="after sign in page.html">
+
+      <i class="fas fa-arrow-left"></i>
+
+      Home
+
+    </a>
+
+  </div>
+
+  <div class="mind-title">
+
+    What's on your mind?
+
+  </div>
+
+  <div class="category-grid">
+
+    <!-- PASTRIES -->
+
+    <a href="" class="food-card">
+
+      <img
+        src="elements/pastries.jpg"
+        alt="Pastries"
+      >
+
+      <div class="food-name">
+        Pastries
+      </div>
+
+    </a>
+
+    <!-- CAKES -->
+
+    <a href="" class="food-card">
+
+      <img
+        src="elements/CAKES.avif"
+        alt="Cakes"
+      >
+
+      <div class="food-name">
+        Cakes
+      </div>
+
+    </a>
+
+    <!-- COOKIES -->
+
+    <a href="" class="food-card">
+
+      <img
+        src="elements/COOKIES.jpg"
+        alt="Cookies"
+      >
+
+      <div class="food-name">
+        Cookies & Biscuits
+      </div>
+
+    </a>
+
+    <!-- CUPCAKES -->
+
+    <a href="" class="food-card">
+
+      <img
+        src="elements/CUPCAKE.webp"
+        alt="Cupcakes"
+      >
+
+      <div class="food-name">
+        Cupcakes
+      </div>
+
+    </a>
+
+    <!-- INGREDIENT STORE -->
+
+    <a
+      href="ingredient-store.html"
+      class="food-card large"
+    >
+
+      <img
+        src="elements/COOKBOOK.jpg"
+        alt="Ingredient Store"
+      >
+
+      <div class="food-name">
+        Ingredient Store
+      </div>
+
+    </a>
+
+  </div>
+
+</body>
+</html>
